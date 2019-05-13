@@ -9,6 +9,7 @@ import Navbar from "./Component/Navigation__bar/Navigation__bar";
 import PostInbox from "./Component/Post__InputBox/Post__Inbox";
 import ViewData from "./Component/Post__ViewData/View__Container";
 
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -17,6 +18,7 @@ class App extends Component {
         };
     }
 
+    //untuk me-random pengguna yang seakan-akan sedang login di aplikasi.
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     }

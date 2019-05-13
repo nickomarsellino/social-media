@@ -1,0 +1,27 @@
+#delete--header{
+    opacity: 0.5;
+    background-color: #f70010;
+    color: white;
+}
+
+#delete--content{
+    text-align: left;
+    font-size: 20px;
+}
+
+#delete--content p{
+    font-style: italic;
+    text-align: right;
+    font-size: 15px;
+}
+
+.post__container{
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+#post__success{
+    background-color: #2BBBAD;
+    color: white;
+
+}

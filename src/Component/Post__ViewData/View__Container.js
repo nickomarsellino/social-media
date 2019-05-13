@@ -42,6 +42,7 @@ class View__Container extends Component {
             <div style={{overflow: "auto"}}>
                 {this.state.postData.map(post =>
                     <ViewComponent
+                        history={this.props.history}
                         key={post.id}
                         post={post}
                         userLoggedIn={this.props.userData.id}

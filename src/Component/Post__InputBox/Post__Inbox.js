@@ -5,6 +5,8 @@ import {Form, TextArea, Image} from 'semantic-ui-react'
 import profile from '../../daniel.jpg';
 import './Post__Inbox.css';
 
+import ModalComponent from "../Modal__Component/Modal_Component";
+
 class Post__Inbox extends Component {
 
     constructor(props) {
@@ -13,10 +15,13 @@ class Post__Inbox extends Component {
             userId: '',
             username: '',
             inputTittle: '',
-            inputBody: ''
+            inputBody: '',
+            openModal: false,
+            modalCondition: ''
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentWillMount() {
@@ -40,12 +45,31 @@ class Post__Inbox extends Component {
             body: this.state.inputBody,
             userId: this.state.userId
         })
-            .then(function (response) {
-                console.log(response);
+            .then(response =>  {
+                this.setState({
+                    openModal: true,
+                    modalCondition: "Post Success Modal"
+                });
             })
             .catch(function (error) {
                 console.log(error);
             });
+    }
+
+    // openModal() {
+    //     this.setState({
+    //         openModal: true,
+    //         modalCondition: "Post Success Modal"
+    //     });
+    // }
+
+    closeModal(isOpen) {
+        if (isOpen) {
+            this.setState({
+                openModal: false,
+                modalCondition: ""
+            })
+        }
     }
 
     render() {
@@ -83,6 +107,16 @@ class Post__Inbox extends Component {
                         </Form>
                     </CardBody>
                 </Card>
+
+                {/*Modal Component*/}
+                <ModalComponent
+                    openModal= {this.state.openModal}
+                    closeModal={this.closeModal}
+                    condition={this.state.modalCondition}
+                    title={this.state.inputTittle}
+                    body={this.state.inputBody}
+                    username={this.state.username}
+                />
             </div>
         );
     }

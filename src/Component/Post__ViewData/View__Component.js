@@ -5,7 +5,10 @@ import {Card, CardBody} from "mdbreact";
 import './View__Component.css';
 import profile from '../../daniel.jpg';
 
-class View__Component extends Component{
+import ModalComponent from "../Modal__Component/Modal_Component";
+
+
+class View__Component extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,11 +17,14 @@ class View__Component extends Component{
             username: '',
             title: '',
             body: '',
-            userLoggedIn: ''
+            userLoggedIn: '',
+            openModal: false,
+            modalCondition: ''
         };
+        this.closeModal = this.closeModal.bind(this);
     }
+
     componentWillMount() {
-        console.log(this.props.userData);
         this.setState({
             Id: this.props.post.id,
             userId: this.props.post.userId,
@@ -39,13 +45,20 @@ class View__Component extends Component{
             });
     }
 
-    viewUserProfile(username, userId) {
-        return (
-            <Feed.Summary content={username}
-                // onClick={() => this.onClickedImage(userId, username)}
-            />
-        );
+    openProfilePage(userId, username) {
+        if (this.props.located === "profile") {
+
+        }
+        else {
+            this.props.history.push({
+                pathname: `/Profile/${username}`.replace(' ', ''),
+                state: {
+                    userId: userId
+                }
+            })
+        }
     }
+
 
     buttonDelete(userId) {
         if (userId === this.state.userLoggedIn) {
@@ -53,10 +66,28 @@ class View__Component extends Component{
                 <Icon
                     size='large' name='trash'
                     id="recycleIcon"
+                    onClick={() => this.openModal()}
                 />
             );
         }
     }
+
+    openModal() {
+        this.setState({
+            openModal: true,
+            modalCondition: "Delete Modal"
+        });
+    }
+
+    closeModal(isOpen) {
+        if (isOpen) {
+            this.setState({
+                openModal: false,
+                modalCondition: ""
+            })
+        }
+    }
+
     render() {
         return (
             <div id="scrollableDiv" style={{overflow: "auto"}}>
@@ -67,45 +98,55 @@ class View__Component extends Component{
                                 <Feed.Label style={{width: "60px", padding: "8px 0"}}>
                                     <img alt=" "
                                          src={profile}
-                                        // onClick={() => this.onClickedImage(userId, username)}
+                                         onClick={() => this.openProfilePage(this.state.userId, this.state.username)}
                                     />
 
                                 </Feed.Label>
-                                <Feed.Content className="Tweet-Content">
+                                <Feed.Content className="post__container">
 
-                                    {this.viewUserProfile(this.state.username, this.state.userId)}
-
-                                    <Feed.Extra
-                                        // onClick={() => this.openModalTweet(tweet._id)}
-                                        id="tweetText" text
+                                    <Feed.Summary
+                                        id="post--title"
                                         content={this.state.title}
                                     />
 
                                     <Feed.Extra
                                         // onClick={() => this.openModalTweet(tweet._id)}
-                                        id="tweetText" text
+                                        id="post--username" text
+                                        content={this.state.username}
+                                        onClick={() => this.openProfilePage(this.state.userId, this.state.username)}
+                                    />
+
+                                    <Feed.Extra
+                                        // onClick={() => this.openModalTweet(tweet._id)}
+                                        text
                                         content={this.state.body}
                                     /> <br/>
 
-                                    <div className="buttonGroup">
-                                        <Icon.Group className=""
-                                            // onClick={() => this.openModalTweet(tweet._id)}
-                                                    id="commentsIcon">
-                                            <Icon name='comments'/>
-                                            "100 Comments"
-                                        </Icon.Group>
-                                    </div>
+                                    <Icon.Group className=""
+                                        // onClick={() => this.openModalTweet(tweet._id)}
+                                                id="commentsIcon">
+                                        <Icon name='comments'/>
+                                        "100 Comments"
+                                    </Icon.Group>
 
                                 </Feed.Content>
 
-                                <Feed.Label className="Tweet-Delete">
+                                <Feed.Label>
                                     {this.buttonDelete(this.state.userId)}
                                 </Feed.Label>
-
                             </Feed.Event>
                         </Feed>
                     </CardBody>
                 </Card>
+
+                {/*Modal Component*/}
+                <ModalComponent
+                    openModal={this.state.openModal}
+                    closeModal={this.closeModal}
+                    condition={this.state.modalCondition}
+                    title={this.state.title}
+                    username={this.state.username}
+                />
             </div>
         );
     }
