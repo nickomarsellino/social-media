@@ -37,7 +37,7 @@ class Navigation__bar extends Component{
                 <p id="navigation__title">Social Media</p>
                 <NavbarNav right={true}>
                         <NavItem id="profileContainer">
-                            <Link to={'/home/myProfile/' + this.state.username.replace(' ', '')}>
+                            <Link to={'/home/myProfile/' + this.state.username}>
                                 <Image className="navigation__profile" id="navigation--picture" src={profile} avatar={true}>
                                     <img alt=" " src={profile}/>
                                 </Image>
