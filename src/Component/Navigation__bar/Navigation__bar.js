@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
-import {Button, Image, Icon} from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react';
 import {
     Navbar,
     NavbarBrand,
@@ -17,26 +16,16 @@ class Navigation__bar extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            isSearch: false,
-            isInbox: false,
-            userName: "",
-            userId: "",
-            collapse: false,
-            isWideEnough: false,
-            dropdownOpen: false,
-            profilePicture: "",
-            messageData: "",
-            isHaveNewMessage: ""
+            userId: '',
+            username: ''
         };
-        // this.onClick = this.onClick.bind(this);
-        // this.toggle = this.toggle.bind(this);
-        // this.logout = this.logout.bind(this);
-        // this.searchClicked = this.searchClicked.bind(this);
-        // this.inboxClicked = this.inboxClicked.bind(this);
     }
 
-    imagedisplay(){
-
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            userId: nextProps.userData.id,
+            username: nextProps.userData.username
+        });
     }
 
     render() {
@@ -48,11 +37,11 @@ class Navigation__bar extends Component{
                 <p id="navigation__title">Social Media</p>
                 <NavbarNav right={true}>
                         <NavItem id="profileContainer">
-                            <Link to={'/home/myProfile/' + this.state.userName.replace(' ', '')}>
+                            <Link to={'/home/myProfile/' + this.state.username.replace(' ', '')}>
                                 <Image className="navigation__profile" id="navigation--picture" src={profile} avatar={true}>
                                     <img alt=" " src={profile}/>
                                 </Image>
-                                <span className="navigation__profile" id="navigation--name">Otong</span>
+                                <span className="navigation__profile" id="navigation--name">{this.state.username}</span>
                             </Link>
                         </NavItem>
                     </NavbarNav>

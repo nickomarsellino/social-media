@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Yellowtail');
 
 #navigation__title{
@@ -33,7 +32,6 @@
 #navigation--name{
     color: black;
     font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
 }
 
 #navigation--name:hover {
@@ -41,3 +39,4 @@
     font-size: 20px;
     text-shadow: 0.7px 0.7px rgba(60, 60, 60, 0.75);
 }
+
