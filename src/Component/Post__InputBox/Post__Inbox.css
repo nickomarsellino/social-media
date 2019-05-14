@@ -26,6 +26,14 @@
     display: inline-block;
 }
 
+#explore__button{
+    font-size: 12px;
+    position: absolute;
+    top: 8%;
+    right: 1%;
+    transform: translateY(-50%);
+}
+
 #post__container {
     margin-top: 1%;
     margin-bottom: 30px;

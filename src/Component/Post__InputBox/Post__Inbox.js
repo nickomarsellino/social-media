@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Card, CardBody, Button} from "mdbreact"
-import {Form, TextArea, Image} from 'semantic-ui-react'
+import {Form, TextArea, Image, Icon} from 'semantic-ui-react'
 import profile from '../../daniel.jpg';
 import './Post__Inbox.css';
 
@@ -56,13 +56,6 @@ class Post__Inbox extends Component {
             });
     }
 
-    // openModal() {
-    //     this.setState({
-    //         openModal: true,
-    //         modalCondition: "Post Success Modal"
-    //     });
-    // }
-
     closeModal(isOpen) {
         if (isOpen) {
             this.setState({
@@ -82,6 +75,18 @@ class Post__Inbox extends Component {
                                 {/*<img alt=" "  src={profile} />*/}
                             </Image>
                             <span><h5 id="nameBox">{this.state.username}</h5></span>
+                            <Button color="default"
+                                    size="md"
+                                    color="info"
+                                    id="explore__button"
+                                    type="submit"
+                                    style={{borderRadius: "5px"}}
+                            > <Icon.Group
+                                // onClick={() => this.openModalTweet(tweet._id)}
+                            >
+                                <Icon name='globe'/>
+                                Explore
+                            </Icon.Group></Button>
                         </div>
                         <Form id="post__container" onSubmit={this.handleSubmit} encType="multipart/form-data">
                             <Form.Field>
