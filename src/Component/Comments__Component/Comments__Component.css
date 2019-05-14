@@ -22,3 +22,19 @@
     transform: translateY(-50%);
     font-size: 13px;
 }
+
+#comment--delete{
+    display: inline-block;
+}
+
+#trashIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    opacity: 0.5
+}
+
+#trashIcon:hover {
+    color: #f70010;
+}

@@ -81,13 +81,13 @@ class View__Component extends Component {
     }
 
 
-    buttonDelete(userId) {
+    buttonDelete(postId,userId) {
         if (userId === this.state.userLoggedIn) {
             return (
                 <Icon
                     size='large' name='trash'
                     id="recycle--icon"
-                    onClick={() => this.openModalDelete()}
+                    onClick={() => this.openModalDelete(postId)}
                 />
             );
         }
@@ -105,11 +105,15 @@ class View__Component extends Component {
         }
     }
 
-    openModalDelete() {
-        this.setState({
-            openModal: true,
-            modalCondition: "Delete Modal"
-        });
+    openModalDelete(postId) {
+        axios.delete("https://jsonplaceholder.typicode.com/posts/"+postId,)
+            .then(response => {
+                this.setState({
+                    openModal: true,
+                    modalCondition: "Delete Modal"
+                });
+            });
+
     }
 
     closeModal(isOpen) {
@@ -171,7 +175,7 @@ class View__Component extends Component {
                                 </Feed.Content>
 
                                 <Feed.Label>
-                                    {this.buttonDelete(this.state.userId)}
+                                    {this.buttonDelete(this.state.Id,this.state.userId)}
                                     {this.buttonEdit(this.state.userId)}
                                 </Feed.Label>
                             </Feed.Event>

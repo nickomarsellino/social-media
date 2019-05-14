@@ -6,6 +6,7 @@ import profile from '../../../daniel.jpg';
 import axios from "axios/index";
 
 import InputComments from "../../Comments__Component/Input__Comments";
+import ViewComments from "../../Comments__Component/Comments__ViewData/View__Comments__Container";
 
 
 class Modal_Detail_Post extends Component {
@@ -135,13 +136,11 @@ class Modal_Detail_Post extends Component {
                             userLoggedIn={this.props.userLoggedIn}
                         />
 
-                        {/*<CommentsContainer*/}
-                        {/*getTweetData={this.props.getTweetData}*/}
-                        {/*tweet={this.props.tweet}*/}
-                        {/*isHome={this.props.isHome}*/}
-                        {/*isProfile={this.props.isProfile}*/}
-                        {/*showUserProfileFromTweets={this.props.showUserProfileFromTweets}*/}
-                        {/*/>*/}
+                        <ViewComments
+                            userId={this.props.userId}
+                            userLoggedIn={this.props.userLoggedIn}
+                            commentsData={this.props.commentsData}
+                        />
                     </div>
                 </ModalBody>
             </Modal>

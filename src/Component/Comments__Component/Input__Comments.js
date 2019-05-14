@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Button, Feed, Form, Message} from 'semantic-ui-react'
 import profile from '../../daniel.jpg';
-import './Input__Comments.css'
+import './Comments__Component.css';
 import ReactDOM from "react-dom";
 
 class Input__Comments extends Component {
@@ -25,7 +25,6 @@ class Input__Comments extends Component {
     getDataUsers() {
         axios.get('https://jsonplaceholder.typicode.com/users/' + this.props.userLoggedIn)
             .then(res => {
-                console.log(res.data)
                 this.setState({
                     username: res.data.username,
                     commentName: res.data.name,
@@ -42,8 +41,6 @@ class Input__Comments extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        console.log(this.props.postId)
 
         axios.post('https://jsonplaceholder.typicode.com/posts/' + this.props.postId + '/comments', {
             postId: this.props.postId,
