@@ -26,6 +26,12 @@
     margin-left: 10px;
 }
 
+.post__container h5{
+    color: #E84F13;
+    margin-left: 10px;
+}
+
+
 .post__container p{
     margin-left: 10px;
 }
@@ -33,14 +39,34 @@
 #post__success{
     background-color: #2BBBAD;
     color: white;
-
 }
 
 .post__comment__container{
     text-align: left;
 }
 
+#comments--icon--modal{
+    position: absolute;
+    opacity: 0.5;
+    padding-left: 2%;
+    font-size: 17px;
+    padding-bottom: 9%;
+    transform: translateY(-50%);
+}
+
+#comments--icon--modal:hover{
+    color: #008ef7;
+    cursor: pointer;
+}
+
+#comments--icon--modal:active{
+    position: relative;
+    top: 1px;
+}
+
 #update--button{
+    background-color: #2BBBAD;
+    color: white;
     position: absolute;
     top: 120%;
     right: 6px;
@@ -49,7 +75,7 @@
 
 #update--message{
     position: absolute;
-    top: 64%;
+    top: 68%;
     transform: translateY(-50%);
     font-size: 12px;
 }

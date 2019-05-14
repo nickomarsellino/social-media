@@ -1,0 +1,24 @@
+.comments__form{
+    margin-bottom: 10%;
+}
+
+#comment__button{
+    background-color: #33B5E5;
+    color: white;
+    padding: 13px;
+    position: absolute;
+    right: 0;
+    margin-top: 14px;
+    transform: translateY(-50%);
+    font-size: 13px;
+}
+
+#comment__message{
+    padding: 13px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 25px;
+    transform: translateY(-50%);
+    font-size: 13px;
+}

@@ -5,6 +5,9 @@ import {Button, Image, Icon, Form, Message} from 'semantic-ui-react';
 import profile from '../../../daniel.jpg';
 import axios from "axios/index";
 
+import InputComments from "../../Comments__Component/Input__Comments";
+
+
 class Modal_Detail_Post extends Component {
 
     constructor(props) {
@@ -43,11 +46,11 @@ class Modal_Detail_Post extends Component {
             body: this.state.updateBody
         })
             .then(response =>  {
-                console.log(response.data)
-                // this.setState({
-                //     openModal: true,
-                //     modalCondition: "Update Success Modal"
-                // });
+                ReactDOM.render(
+                    <Message success>
+                         <Message.Header>Success Update This Post</Message.Header>
+                    </Message>
+                    , document.getElementById('update--message'));
             })
             .catch(function (error) {
                 console.log(error);
@@ -69,6 +72,7 @@ class Modal_Detail_Post extends Component {
         if (this.props.userId === this.props.userLoggedIn) {
             return (
                 <ModalBody className="post__container">
+                    <h5>Author: &nbsp;{this.props.username}</h5>
                     <Form id="post__container" onSubmit={this.handleSubmit} encType="multipart/form-data">
                         <Form.Field>
                             <input name="updateTittle"
@@ -85,21 +89,19 @@ class Modal_Detail_Post extends Component {
                         />
                         <Button
                                 id="update--button"
-                                color='google plus'
                                 type="submit"
                                 style={{borderRadius: "5px"}}
                         >Update Post</Button>
                     </Form>
                     <br/>
-                    <Message success id="update--message">
-                        <Message.Header>Success Update This Post</Message.Header>
-                    </Message>
+
+                    <div id="update--message"/>
+
                     <Icon.Group
-                        id="comments--icon">
+                        id="comments--icon--modal">
                         <Icon name='comments'/>
                         {this.props.commentsData.length} Comments
                     </Icon.Group>
-                    <hr/>
                 </ModalBody>
             );
         }
@@ -107,6 +109,7 @@ class Modal_Detail_Post extends Component {
             return (
                 <ModalBody className="post__container">
                     <h4>{this.props.title}</h4>
+                    <h5>Author: &nbsp;{this.props.username}</h5>
                     <p>{this.props.body}</p>
                     <Icon.Group
                         id="comments--icon">
@@ -122,27 +125,16 @@ class Modal_Detail_Post extends Component {
     render() {
         return (
             <Modal isOpen={this.props.openModal} toggle={this.props.closeModal}>
-                <ModalHeader toggle={this.props.closeModal}>
-                    <div className="profileBox">
-                        <Image src={profile} avatar/>
-                        <span><h5 id="nameBox">{this.props.username}</h5></span>
-                    </div>
-                </ModalHeader>
 
                 {this.viewDetailPost()}
 
                 <ModalBody className="post__comment__container">
                     <div className="commentBox">
-                        {/*<CommentsBox*/}
-                        {/*profilePicture={this.props.profilePicture}*/}
-                        {/*userId={this.props.userId}*/}
-                        {/*username={this.props.username}*/}
-                        {/*tweet={this.props.tweet}*/}
-                        {/*getTweetData={this.props.getTweetData}*/}
-                        {/*isHome={this.props.isHome}*/}
-                        {/*isProfile={this.props.isProfile}*/}
-                        {/*showUserProfileFromTweets={this.props.showUserProfileFromTweets}*/}
-                        {/*/>*/}
+                        <InputComments
+                            postId={this.props.postId}
+                            userLoggedIn={this.props.userLoggedIn}
+                        />
+
                         {/*<CommentsContainer*/}
                         {/*getTweetData={this.props.getTweetData}*/}
                         {/*tweet={this.props.tweet}*/}

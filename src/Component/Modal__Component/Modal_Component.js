@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Feed, Icon, Image} from 'semantic-ui-react';
-import {Container, Modal, ModalBody, ModalHeader} from 'mdbreact';
-import profile from '../../daniel.jpg';
+import {Container, Modal} from 'mdbreact';
 import './Modal_Component.css';
 
 import ModalDelete from "../Modal__Component/Open__Modal__Delete/Modal__Delete";
@@ -16,13 +13,6 @@ class Modal_Component extends Component {
 
         };
         this.closeModal = this.closeModal.bind(this);
-    }
-
-
-    componentWillReceiveProps(nextProps) {
-        // if (nextProps.tweet !== this.props.tweet) {
-        //     console.log(this.state.commentsData)
-        // }
     }
 
     //Akses Fungsi untuk close modal di parent
