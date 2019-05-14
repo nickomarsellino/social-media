@@ -71,9 +71,7 @@ class Post__Inbox extends Component {
                 <Card>
                     <CardBody>
                         <div className="profileBox">
-                            <Image src={profile} avatar id="avatarBox">
-                                {/*<img alt=" "  src={profile} />*/}
-                            </Image>
+                            <Image src={profile} avatar id="avatarBox"/>
                             <span><h5 id="nameBox">{this.state.username}</h5></span>
                             <Button color="default"
                                     size="md"

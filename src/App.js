@@ -27,6 +27,10 @@ class App extends Component {
         this.getDataUsers()
     }
 
+    componentWillUnmount() {
+        this.getDataUsers()
+    }
+
     getDataUsers() {
         axios.get('https://jsonplaceholder.typicode.com/users/' + this.getRandomInt(10))
             .then(res => {

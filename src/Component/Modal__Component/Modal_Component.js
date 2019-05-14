@@ -7,12 +7,13 @@ import './Modal_Component.css';
 
 import ModalDelete from "../Modal__Component/Open__Modal__Delete/Modal__Delete";
 import ModalPost from "../Modal__Component/Open__Modal__Post__Success/Modal__Post__Success";
+import ModalDetailPost from "../Modal__Component/Open_Modal_Detail_Post/Modal_Detail_Post";
 
 class Modal_Component extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tweet: []
+
         };
         this.closeModal = this.closeModal.bind(this);
     }
@@ -20,9 +21,7 @@ class Modal_Component extends Component {
 
     componentWillReceiveProps(nextProps) {
         // if (nextProps.tweet !== this.props.tweet) {
-        //     this.setState({
-        //         tweet: nextProps.tweet
-        //     });
+        //     console.log(this.state.commentsData)
         // }
     }
 
@@ -55,6 +54,22 @@ class Modal_Component extends Component {
         );
     }
 
+    openDetailPost(){
+        return (
+            <ModalDetailPost
+                openModal={this.props.openModal}
+                closeModal={this.closeModal}
+                postId={this.props.postId}
+                title={this.props.title}
+                username={this.props.username}
+                body={this.props.body}
+                commentsData={this.props.commentsData}
+                userId={this.props.userId}
+                userLoggedIn={this.props.userLoggedIn}
+            />
+        );
+    }
+
     //render sesuai dengan kondisi modal yang dibuka
     render() {
         if (this.props.openModal) {
@@ -69,6 +84,13 @@ class Modal_Component extends Component {
                 return (
                     <Container>
                         {this.openPostSuccess()}
+                    </Container>
+                );
+            }
+            else if(this.props.condition.localeCompare("Detail Post Modal") === 0){
+                return (
+                    <Container>
+                        {this.openDetailPost()}
                     </Container>
                 );
             }

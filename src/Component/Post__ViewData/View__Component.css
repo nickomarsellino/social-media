@@ -22,16 +22,48 @@
     font-size: 18px;
 }
 
-#recycleIcon {
+
+#comments--icon{
+    margin-left: 15px;
+    opacity: 0.5;
+}
+
+#comments--icon:hover{
+    color: #008ef7;
+    cursor: pointer;
+}
+
+#comments--icon:active{
+    position: relative;
+    top: 1px;
+}
+
+#recycle--icon {
     cursor: pointer;
     opacity: 0.5;
 }
 
-#recycleIcon:hover {
+#recycle--icon:hover {
     color: #f70010;
 }
 
-#recycleIcon:active {
+#recycle--icon:active {
+    position: relative;
+    top: 1px;
+}
+
+#edit--icon{
+    margin-top: 15px;
+    cursor: pointer;
+    opacity: 0.5;
+    margin-left: 2px;
+}
+
+#edit--icon:hover {
+    color: #0091c0;
+}
+
+#edit--icon:active {
     position: relative;
     top: 1px;
 }

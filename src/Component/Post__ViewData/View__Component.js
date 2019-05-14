@@ -7,7 +7,6 @@ import profile from '../../daniel.jpg';
 
 import ModalComponent from "../Modal__Component/Modal_Component";
 
-
 class View__Component extends Component {
     constructor(props) {
         super(props);
@@ -18,6 +17,7 @@ class View__Component extends Component {
             title: '',
             body: '',
             userLoggedIn: '',
+            commentsData:[],
             openModal: false,
             modalCondition: ''
         };
@@ -34,6 +34,7 @@ class View__Component extends Component {
         });
 
         this.getDataUsers();
+        this.getCommentsData(this.props.post.id);
     }
 
     getDataUsers() {
@@ -43,6 +44,26 @@ class View__Component extends Component {
                     username: res.data.username
                 });
             });
+    }
+
+    getCommentsData(postId){
+
+        //untuk merandom jumlah data comment yang diambil
+        let length = Math.floor(Math.random() * (15 - 5 + 1)) + 5
+        let data = []
+
+        axios.get('https://jsonplaceholder.typicode.com/posts/' +postId+'/comments')
+            .then(res => {
+                res.data.forEach(comments => {
+                    if (data.length < length) {
+                        data.push(comments);
+                    }
+                });
+                this.setState({
+                    commentsData: data,
+                })
+            });
+        console.log()
     }
 
     openProfilePage(userId, username) {
@@ -65,14 +86,26 @@ class View__Component extends Component {
             return (
                 <Icon
                     size='large' name='trash'
-                    id="recycleIcon"
-                    onClick={() => this.openModal()}
+                    id="recycle--icon"
+                    onClick={() => this.openModalDelete()}
                 />
             );
         }
     }
 
-    openModal() {
+    buttonEdit(userId){
+        if (userId === this.state.userLoggedIn) {
+            return (
+                <Icon
+                    size='large' name='edit'
+                    id="edit--icon"
+                    onClick={() => this.openDetailPost()}
+                />
+            );
+        }
+    }
+
+    openModalDelete() {
         this.setState({
             openModal: true,
             modalCondition: "Delete Modal"
@@ -86,6 +119,13 @@ class View__Component extends Component {
                 modalCondition: ""
             })
         }
+    }
+
+    openDetailPost(){
+        this.setState({
+            openModal: true,
+            modalCondition: "Detail Post Modal"
+        });
     }
 
     render() {
@@ -110,29 +150,29 @@ class View__Component extends Component {
                                     />
 
                                     <Feed.Extra
-                                        // onClick={() => this.openModalTweet(tweet._id)}
                                         id="post--username" text
                                         content={this.state.username}
                                         onClick={() => this.openProfilePage(this.state.userId, this.state.username)}
                                     />
 
                                     <Feed.Extra
-                                        // onClick={() => this.openModalTweet(tweet._id)}
+                                        onClick={() => this.openDetailPost(this.state.id)}
                                         text
                                         content={this.state.body}
                                     /> <br/>
 
-                                    <Icon.Group className=""
-                                        // onClick={() => this.openModalTweet(tweet._id)}
-                                                id="commentsIcon">
+                                    <Icon.Group
+                                        onClick={() => this.openDetailPost(this.state.id)}
+                                                id="comments--icon">
                                         <Icon name='comments'/>
-                                        "100 Comments"
+                                        {this.state.commentsData.length} Comments
                                     </Icon.Group>
 
                                 </Feed.Content>
 
                                 <Feed.Label>
                                     {this.buttonDelete(this.state.userId)}
+                                    {this.buttonEdit(this.state.userId)}
                                 </Feed.Label>
                             </Feed.Event>
                         </Feed>
@@ -144,8 +184,13 @@ class View__Component extends Component {
                     openModal={this.state.openModal}
                     closeModal={this.closeModal}
                     condition={this.state.modalCondition}
+                    userId={this.state.userId}
+                    userLoggedIn={this.state.userLoggedIn}
+                    postId={this.props.post.id}
                     title={this.state.title}
+                    body={this.state.body}
                     username={this.state.username}
+                    commentsData={this.state.commentsData}
                 />
             </div>
         );

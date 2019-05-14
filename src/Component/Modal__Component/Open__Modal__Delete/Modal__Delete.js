@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Feed, Icon, Image} from 'semantic-ui-react';
-import {Container, Modal, ModalBody, ModalHeader} from 'mdbreact';
+import { Modal, ModalBody, ModalHeader} from 'mdbreact';
 
 class Modal__Delete extends Component{
     render() {
