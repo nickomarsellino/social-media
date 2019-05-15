@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import {Card, CardBody, Button} from "mdbreact"
 import {Form, TextArea, Image, Icon} from 'semantic-ui-react'
 import profile from '../../daniel.jpg';
@@ -31,13 +32,13 @@ class Post__Inbox extends Component {
         });
     }
 
-    handleInputChange(event){
+    handleInputChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         });
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         event.preventDefault();
 
         axios.post('https://jsonplaceholder.typicode.com/posts', {
@@ -45,7 +46,7 @@ class Post__Inbox extends Component {
             body: this.state.inputBody,
             userId: this.state.userId
         })
-            .then(response =>  {
+            .then(response => {
                 this.setState({
                     openModal: true,
                     modalCondition: "Post Success Modal"
@@ -73,32 +74,34 @@ class Post__Inbox extends Component {
                         <div className="profileBox">
                             <Image src={profile} avatar id="avatarBox"/>
                             <span><h5 id="nameBox">{this.state.username}</h5></span>
-                            <Button color="default"
-                                    size="md"
-                                    color="info"
-                                    id="explore__button"
-                                    type="submit"
-                                    style={{borderRadius: "5px"}}
-                            > <Icon.Group
-                                // onClick={() => this.openModalTweet(tweet._id)}
-                            >
-                                <Icon name='globe'/>
-                                Explore
-                            </Icon.Group></Button>
+                            <Link to={'/Explore'}>
+                                <Button color="default"
+                                        size="md"
+                                        color="info"
+                                        id="explore__button"
+                                        type="submit"
+                                        style={{borderRadius: "5px"}}
+                                >
+                                    <Icon.Group>
+                                        <Icon name='globe'/>
+                                        Explore
+                                    </Icon.Group>
+                                </Button>
+                            </Link>
                         </div>
                         <Form id="post__container" onSubmit={this.handleSubmit} encType="multipart/form-data">
                             <Form.Field>
                                 <input placeholder='Tittle' name="inputTittle" onChange={this.handleInputChange}/>
                             </Form.Field>
                             <Form.TextArea
-                                           placeholder={"Have a nice day " + this.state.username}
-                                           id='form-textarea-control-opinion'
-                                           type="text"
-                                           maxLength="120"
-                                           control={TextArea}
-                                           name="inputBody"
-                                           style={{maxHeight: "100px", minHeight: "90px"}}
-                                           onChange={this.handleInputChange}
+                                placeholder={"Have a nice day " + this.state.username}
+                                id='form-textarea-control-opinion'
+                                type="text"
+                                maxLength="120"
+                                control={TextArea}
+                                name="inputBody"
+                                style={{maxHeight: "100px", minHeight: "90px"}}
+                                onChange={this.handleInputChange}
                             />
                             <Button color="default"
                                     size="md"
@@ -113,7 +116,7 @@ class Post__Inbox extends Component {
 
                 {/*Modal Component*/}
                 <ModalComponent
-                    openModal= {this.state.openModal}
+                    openModal={this.state.openModal}
                     closeModal={this.closeModal}
                     condition={this.state.modalCondition}
                     title={this.state.inputTittle}

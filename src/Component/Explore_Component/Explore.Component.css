@@ -1,0 +1,37 @@
+#explore__container{
+    width: 100%;
+    text-align: center;
+}
+.ui.menu.three.item .itemNav {
+    width: 50%;
+}
+
+.user-Container{
+    text-align: -webkit-center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+#user__Card__Container{
+    text-align: left;
+}
+
+#icon--view--profile{
+    font-size: 15px;
+    font-family: 'myTextFontMedium', sans-serif;
+    display: inline-block;
+    border-style: solid;
+    border-width: 1.2px;
+    border-color: rgb(77, 182, 172);
+    margin: 5px 20px 5px 20px;
+    padding: 15px 15px 15px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(77, 182, 172);
+}
+
+#card__profile__name{
+    white-space:nowrap;
+    overflow: hidden;
+}

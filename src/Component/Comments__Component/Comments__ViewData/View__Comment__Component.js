@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Comment, Icon, Message} from 'semantic-ui-react'
+import {Comment, Icon} from 'semantic-ui-react'
 import profile from '../../../daniel.jpg';
 import '../Comments__Component.css';
-import ReactDOM from "react-dom";
 
 class View__Comment__Component extends Component{
     constructor(props) {
@@ -21,7 +20,6 @@ class View__Comment__Component extends Component{
 
     deleteComment(postId, commentId){
         let url= "https://jsonplaceholder.typicode.com/comments/"+commentId
-        console.log(url)
         axios.delete(url,)
             .then(response => {
                 console.log(response)
