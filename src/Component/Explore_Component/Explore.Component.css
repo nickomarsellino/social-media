@@ -25,7 +25,7 @@
     border-width: 1.2px;
     border-color: rgb(77, 182, 172);
     margin: 5px 20px 5px 20px;
-    padding: 15px 15px 15px 15px;
+    padding: 10px 10px 10px 10px;
     border-radius: 5px;
     cursor: pointer;
     color: rgb(77, 182, 172);
@@ -34,4 +34,28 @@
 #card__profile__name{
     white-space:nowrap;
     overflow: hidden;
+}
+
+
+.album--Container{
+    text-align: -webkit-center;
+    margin: 10px 5px 10px 5px;
+    display: inline-block;
+}
+
+#album__cart__container {
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+}
+
+#album--title{
+    word-break : break-all;
+    white-space: pre;
+    overflow: hidden;
+    max-width: 31ch;
+}
+
+#album--name{
+    color: #E84F13;
 }

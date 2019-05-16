@@ -39,18 +39,6 @@ class App extends Component {
                     userData: res.data
                 });
             });
-
-        // const reducedBuildings = [];
-
-        // axios.get('https://jsonplaceholder.typicode.com/posts')
-        //     .then(res => {
-        //         res.data.forEach(building => {
-        //             if (reducedBuildings.length < 10) {
-        //                 reducedBuildings.push(building);
-        //             }
-        //         });
-        //         console.log(reducedBuildings)
-        //     });
     }
 
     render() {

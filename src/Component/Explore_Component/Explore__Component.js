@@ -3,14 +3,15 @@ import axios from 'axios';
 import { Icon, Step } from 'semantic-ui-react';
 import './Explore.Component.css';
 
-import ExploreUsers from "./Explore__User__Component/Explore__Users__Container";
+import ExploreUsers from "./Explore__View__User__Component/Explore__Users__Container";
+import ExploreAlbums from "./Explore__View__Album__Component/Explore__Album__Container";
 
 
 class Explore__Component extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            current: 0
+            current: 1
         };
     }
 
@@ -23,7 +24,7 @@ class Explore__Component extends Component{
                     userLoggedIn={this.props.userLoggedIn}
                 />;
             case 1:
-                return <h1>2</h1>;
+                return <ExploreAlbums/>;
             default:
                 return null;
         }
@@ -34,8 +35,6 @@ class Explore__Component extends Component{
         // In this example we expect type number but trigger holds string
         // That's why we 'cast' to a number using Number()
         const current = Number(event.target.dataset.trigger);
-        console.log(event.target.dataset)
-        console.log(current)
         // Sets new state of current component and triggers new render
         this.setState({ current })
     }
@@ -59,8 +58,8 @@ class Explore__Component extends Component{
                        onClick={this.handleChange}
                     >
                         <Icon.Group size='large'>
-                            <Icon name='music' />
-                            <Icon corner name='assistive listening systems' />
+                            <Icon name='image' />
+                            <Icon corner name='thumbs up outline' />
                         </Icon.Group>
                         <p>&nbsp;Best New Album</p>
                     </a>

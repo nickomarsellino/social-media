@@ -27,9 +27,7 @@ class Navigation__bar extends Component{
             return (
                 <center>
                     <div
-                        id='icon--view--profile'
-                        // onClick={() => this.viewUserProfile(username , userId)}
-                    >
+                        id='icon--view--profile'>
                         <center>
                             <Icon
                                 size='large'

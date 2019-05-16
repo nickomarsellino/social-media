@@ -5,6 +5,9 @@ import './Modal_Component.css';
 import ModalDelete from "../Modal__Component/Open__Modal__Delete/Modal__Delete";
 import ModalPost from "../Modal__Component/Open__Modal__Post__Success/Modal__Post__Success";
 import ModalDetailPost from "../Modal__Component/Open_Modal_Detail_Post/Modal_Detail_Post";
+import ModalDetailPhoto from "../Modal__Component/Open__Modal__Photo/Modal__Detail__Photo";
+
+
 
 class Modal_Component extends Component {
     constructor(props) {
@@ -60,6 +63,19 @@ class Modal_Component extends Component {
         );
     }
 
+    openDetailPhoto(){
+        return (
+            <ModalDetailPhoto
+                openModal={this.props.openModal}
+                closeModal={this.closeModal}
+                title={this.props.title}
+                description={this.props.description}
+                username={this.props.username}
+                photo={this.props.photo}
+            />
+        );
+    }
+
     //render sesuai dengan kondisi modal yang dibuka
     render() {
         if (this.props.openModal) {
@@ -81,6 +97,13 @@ class Modal_Component extends Component {
                 return (
                     <Container>
                         {this.openDetailPost()}
+                    </Container>
+                );
+            }
+            else if(this.props.condition.localeCompare("Detail Photo Modal") === 0){
+                return (
+                    <Container>
+                        {this.openDetailPhoto()}
                     </Container>
                 );
             }

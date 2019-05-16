@@ -32,7 +32,7 @@ class Navigation__bar extends Component {
 
     render() {
         return (
-            <div className="peopleCards">
+            <div>
                 {this.state.usersData.map(users =>
                     <ViewUser
                         users={users}
