@@ -23,6 +23,7 @@ class Navigation__bar extends Component{
             <Comment.Group size='small'>
                 {this.state.commentsData.map(comment =>
                     <CommentComponent
+                        key={comment.id}
                         userLoggedIn={this.props.userLoggedIn}
                         comment={comment}/>
                 )}
