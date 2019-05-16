@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import {Feed, Icon, Image} from 'semantic-ui-react';
+import {Feed, Icon} from 'semantic-ui-react';
 import {Card, CardBody} from "mdbreact";
 import './View__Component.css';
 import profile from '../../daniel.jpg';
@@ -67,8 +67,6 @@ class View__Component extends Component {
     }
 
     buttonDelete(postId,userId) {
-        console.log(this.state.userLoggedIn)
-        console.log(userId)
         if (userId === this.state.userLoggedIn) {
             return (
                 <Icon

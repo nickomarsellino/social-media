@@ -5,7 +5,7 @@ import profile from '../../daniel.jpg';
 import './Profile__Page.css';
 
 import ViewData from "../Post__ViewData/View__Container";
-
+import AlbumComponent from "../Explore_Component/Explore__View__Album__Component/Explore__Album__Container";
 
 class Profile__Page extends Component{
     constructor() {
@@ -16,7 +16,8 @@ class Profile__Page extends Component{
             username: '',
             email: '',
             phone: '',
-            website: ''
+            website: '',
+            current: 0
         };
     }
 
@@ -33,6 +34,37 @@ class Profile__Page extends Component{
                 });
             });
     }
+
+    renderMyComponent = () => {
+        // Our switch conditional render
+        switch(this.state.current) {
+            case 0:
+                return <ViewData
+                    userLoggedIn={this.props.userLoggedIn}
+                    userId={this.state.userId}
+                    location="inProfilePage"
+                />;
+            case 1:
+                return <AlbumComponent
+                    userLoggedIn={this.props.userLoggedIn}
+                    location="inProfilePage"
+                    userId={this.state.userId}
+                />;
+            default:
+                return null;
+        }
+    }
+
+    handleChange = (event) => {
+        // We are looking for data-trigger attribute
+        // In this example we expect type number but trigger holds string
+        // That's why we 'cast' to a number using Number()
+        const current = Number(event.target.dataset.trigger);
+        // Sets new state of current component and triggers new render
+        this.setState({ current })
+    }
+
+
     render() {
         return (
             <div>
@@ -63,12 +95,31 @@ class Profile__Page extends Component{
                     </Card>
                 </center>
 
-                <ViewData
-                    userLoggedIn={this.props.userLoggedIn}
-                    userId={this.state.userId}
-                    location="inProfilePage"
-                />
-
+                <div>
+                    <div id="explore__container" className="ui three item menu">
+                        <a className="item itemNav"
+                           data-trigger="0"
+                           onClick={this.handleChange}
+                        >
+                            <Icon.Group size='large'>
+                                <Icon name='users' />
+                                <Icon corner name='add' />
+                            </Icon.Group>
+                            <p>&nbsp;Connect to another users</p>
+                        </a>
+                        <a className="item itemNav"
+                           data-trigger="1"
+                           onClick={this.handleChange}
+                        >
+                            <Icon.Group size='large'>
+                                <Icon name='image' />
+                                <Icon corner name='thumbs up outline' />
+                            </Icon.Group>
+                            <p>&nbsp;Best New Album</p>
+                        </a>
+                    </div>
+                    {this.renderMyComponent()}
+                </div>
             </div>
         );
     }

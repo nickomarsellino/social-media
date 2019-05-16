@@ -15,7 +15,7 @@ class View__Container extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if(this.props.location){
+        if(nextProps.location){
             this.getUserPostData(nextProps.userId);
         }
     }
@@ -47,7 +47,6 @@ class View__Container extends Component {
     }
 
     getUserPostData(userId){
-        this.setState({postData: []})
         const data = [];
         axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + userId)
             .then(res => {
@@ -91,7 +90,6 @@ class View__Container extends Component {
     }
 
     render() {
-        console.log(this.state.posDataUsers)
         return (
             <div>
                 {this.condition()}

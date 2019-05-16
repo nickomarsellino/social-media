@@ -5,18 +5,34 @@ import '../Explore.Component.css';
 
 import AlbumComponent from "./Explore__Album__Component";
 
-
 class Explore__Album__Container extends Component {
     constructor() {
         super();
         this.state = {
             albumData: [],
+            albumUserData: []
         };
 
     }
 
     componentWillMount() {
         this.getAlbumsData();
+        if(this.props.location){
+            this.getUserAlbumData(this.props.userId);
+        }
+    }
+
+
+    getUserAlbumData(userId){
+        const data = [];
+        axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + userId)
+            .then(res => {
+                for (let j = 0; j < 10; j++) {
+                    data.push(res.data[j]);
+                    let joined = this.state.albumUserData.concat(res.data[j]);
+                    this.setState({albumUserData: joined})
+                }
+            });
     }
 
     getAlbumsData() {
@@ -34,13 +50,32 @@ class Explore__Album__Container extends Component {
         }
     }
 
-    render() {
-        return (
-            <FadeIn>
+    condition(){
+        if(this.props.location){
+            return(
+                <div>
+                    {this.state.albumUserData.map(album =>
+                        <AlbumComponent album={album} key={album.id}/>
+                    )}
+                </div>
+            );
+        }
+        else{
+            return(
                 <div>
                     {this.state.albumData.map(album =>
                         <AlbumComponent album={album} key={album.id}/>
                     )}
+                </div>
+            );
+        }
+    }
+
+    render() {
+        return (
+            <FadeIn>
+                <div>
+                    {this.condition()}
                 </div>
             </FadeIn>
         );

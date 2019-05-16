@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {Modal, ModalBody, ModalHeader} from 'mdbreact';
-import {Button, Image, Icon, Form, Message} from 'semantic-ui-react';
-import profile from '../../../daniel.jpg';
+import {Modal, ModalBody} from 'mdbreact';
+import {Button, Icon, Form, Message} from 'semantic-ui-react';
 import axios from "axios/index";
 
 import InputComments from "../../Comments__Component/Input__Comments";

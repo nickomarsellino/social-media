@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FadeIn from 'react-fade-in';
-import { Icon, Step } from 'semantic-ui-react';
+import { Icon} from 'semantic-ui-react';
 import './Explore.Component.css';
 
 import ExploreUsers from "./Explore__View__User__Component/Explore__Users__Container";
@@ -11,7 +11,7 @@ class Explore__Component extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            current: 1
+            current: 0
         };
     }
 

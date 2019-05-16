@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Comment, Icon, Message} from 'semantic-ui-react';
+import {Comment} from 'semantic-ui-react';
 import "../Comments__Component.css";
 
 import CommentComponent from "./View__Comment__Component";
