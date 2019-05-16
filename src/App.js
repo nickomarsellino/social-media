@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Container} from "mdbreact"
-import {Route, Switch} from 'react-router-dom';
+import {Container} from "mdbreact";
+import FadeIn from 'react-fade-in';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 
 //load another component
 import Navbar from "./Component/Navigation__bar/Navigation__bar";
 import PostInbox from "./Component/Post__InputBox/Post__Inbox";
 import ViewData from "./Component/Post__ViewData/View__Container";
-import ExploreComponent from "./Component/Explore_Component/Explore__Component"
+import ExploreComponent from "./Component/Explore_Component/Explore__Component";
+import ProfileComponent from "./Component/Profile__Page__Component/Profile__Page";
 
 
 class App extends Component {
@@ -48,6 +50,7 @@ class App extends Component {
                 <ViewData
                     history={this.props.history}
                     userData={this.state.userData}
+                    userLoggedIn={this.state.userData.id}
                 />
             </Container>
         );
@@ -58,17 +61,33 @@ class App extends Component {
             </Container>
         );
 
-        return (
-            <div className="App">
-                <Navbar userData={this.state.userData} />
 
-                <div>
-                    <Switch>
-                        <Route exact path={'/'} component={home}/>
-                        <Route path={'/Explore'} component={explore}/>
-                    </Switch>
-                </div>
-            </div>
+        // console.log(this.props.location.state);
+        return (
+            <Router>
+                <FadeIn>
+                    <div className="App">
+                        <Navbar userData={this.state.userData} history={this.props.history}/>
+
+                        <div>
+                            <Switch>
+                                <Route exact path={'/'} component={home}/>
+                                <Route path={'/Profile/:username'} render={({match}) => (
+                                    <Container className="col-lg-8 col-lg-offset-4"
+                                               style={{marginBottom: "5%", marginTop: "5%"}}>
+                                        <ProfileComponent
+                                            username={match.params.username}
+                                            userLoggedIn={this.state.userData.id}
+                                        />
+                                    </Container>
+                                )}
+                                />
+                                <Route path={'/Explore'} component={explore}/>
+                            </Switch>
+                        </div>
+                    </div>
+                </FadeIn>
+            </Router>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Comment, Image} from 'semantic-ui-react'
+import FadeIn from 'react-fade-in';
 import axios from 'axios';
 import '../Explore.Component.css';
 
@@ -36,11 +36,13 @@ class Explore__Album__Container extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.albumData.map(album =>
-                    <AlbumComponent album={album} key={album.id}/>
-                )}
-            </div>
+            <FadeIn>
+                <div>
+                    {this.state.albumData.map(album =>
+                        <AlbumComponent album={album} key={album.id}/>
+                    )}
+                </div>
+            </FadeIn>
         );
     }
 }

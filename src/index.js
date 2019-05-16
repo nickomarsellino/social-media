@@ -12,9 +12,8 @@ import 'mdbreact/dist/css/mdb.css';
 
 
 ReactDOM.render(
-    <Router>
-        <App />
-    </Router>,
+
+        <App />,
     document.getElementById('root')
 );
 

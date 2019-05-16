@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 import {Feed, Icon, Image} from 'semantic-ui-react';
 import {Card, CardBody} from "mdbreact";
 import './View__Component.css';
@@ -63,25 +64,11 @@ class View__Component extends Component {
                     commentsData: data,
                 })
             });
-        console.log()
     }
-
-    openProfilePage(userId, username) {
-        if (this.props.located === "profile") {
-
-        }
-        else {
-            this.props.history.push({
-                pathname: `/Profile/${username}`.replace(' ', ''),
-                state: {
-                    userId: userId
-                }
-            })
-        }
-    }
-
 
     buttonDelete(postId,userId) {
+        console.log(this.state.userLoggedIn)
+        console.log(userId)
         if (userId === this.state.userLoggedIn) {
             return (
                 <Icon
@@ -153,11 +140,15 @@ class View__Component extends Component {
                                         content={this.state.title}
                                     />
 
-                                    <Feed.Extra
-                                        id="post--username" text
-                                        content={this.state.username}
-                                        onClick={() => this.openProfilePage(this.state.userId, this.state.username)}
-                                    />
+                                    <Link
+                                        to={`/Profile/${this.state.username}`}
+                                    >
+                                        <Feed.Extra
+                                            id="post--username" text
+                                            content={this.state.username}
+                                        />
+                                    </Link>
+
 
                                     <Feed.Extra
                                         onClick={() => this.openDetailPost(this.state.id)}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import FadeIn from 'react-fade-in';
 import { Icon, Step } from 'semantic-ui-react';
 import './Explore.Component.css';
 
@@ -41,31 +41,33 @@ class Explore__Component extends Component{
 
     render() {
         return (
-            <div>
-                <div id="explore__container" className="ui three item menu">
-                    <a className="item itemNav"
-                       data-trigger="0"
-                       onClick={this.handleChange}
-                    >
-                        <Icon.Group size='large'>
-                            <Icon name='users' />
-                            <Icon corner name='add' />
-                        </Icon.Group>
-                        <p>&nbsp;Connect to another users</p>
-                    </a>
-                    <a className="item itemNav"
-                       data-trigger="1"
-                       onClick={this.handleChange}
-                    >
-                        <Icon.Group size='large'>
-                            <Icon name='image' />
-                            <Icon corner name='thumbs up outline' />
-                        </Icon.Group>
-                        <p>&nbsp;Best New Album</p>
-                    </a>
+            <FadeIn>
+                <div>
+                    <div id="explore__container" className="ui three item menu">
+                        <a className="item itemNav"
+                           data-trigger="0"
+                           onClick={this.handleChange}
+                        >
+                            <Icon.Group size='large'>
+                                <Icon name='users' />
+                                <Icon corner name='add' />
+                            </Icon.Group>
+                            <p>&nbsp;Connect to another users</p>
+                        </a>
+                        <a className="item itemNav"
+                           data-trigger="1"
+                           onClick={this.handleChange}
+                        >
+                            <Icon.Group size='large'>
+                                <Icon name='image' />
+                                <Icon corner name='thumbs up outline' />
+                            </Icon.Group>
+                            <p>&nbsp;Best New Album</p>
+                        </a>
+                    </div>
+                    {this.renderMyComponent()}
                 </div>
-                {this.renderMyComponent()}
-            </div>
+            </FadeIn>
         );
     }
 }

@@ -9,11 +9,21 @@ class View__Container extends Component {
         super();
         this.state = {
             postData: [],
+            posDataUsers: []
         };
 
     }
 
+    componentWillReceiveProps(nextProps){
+        if(this.props.location){
+            this.getUserPostData(nextProps.userId);
+        }
+    }
+
+
     componentWillMount() {
+        // console.log(this.props.location)
+
         this.getPostData();
     }
 
@@ -24,7 +34,6 @@ class View__Container extends Component {
     getPostData() {
         //difungsi ini hanya mengambil masing-masing 2 post dari setiap users supaya lebih beragam.
         const data = [];
-
         for (let i = 1; i < 11; i++) {
             axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + i)
                 .then(res => {
@@ -37,17 +46,55 @@ class View__Container extends Component {
         }
     }
 
+    getUserPostData(userId){
+        this.setState({postData: []})
+        const data = [];
+        axios.get('https://jsonplaceholder.typicode.com/posts?userId=' + userId)
+            .then(res => {
+                for (let j = 0; j < 10; j++) {
+                    data.push(res.data[j]);
+                    let joined = this.state.posDataUsers.concat(res.data[j]);
+                    this.setState({posDataUsers: joined})
+                }
+            });
+    }
+
+    condition(){
+        if(this.props.location){
+            return(
+                <div style={{overflow: "auto"}}>
+                    {this.state.posDataUsers.map(post =>
+                        <ViewComponent
+                            history={this.props.history}
+                            key={post.id}
+                            post={post}
+                            userLoggedIn={this.props.userLoggedIn}
+                        />
+                    )}
+                </div>
+            );
+        }
+        else{
+            return(
+                <div style={{overflow: "auto"}}>
+                    {this.state.postData.map(post =>
+                        <ViewComponent
+                            history={this.props.history}
+                            key={post.id}
+                            post={post}
+                            userLoggedIn={this.props.userLoggedIn}
+                        />
+                    )}
+                </div>
+            );
+        }
+    }
+
     render() {
+        console.log(this.state.posDataUsers)
         return (
-            <div style={{overflow: "auto"}}>
-                {this.state.postData.map(post =>
-                    <ViewComponent
-                        history={this.props.history}
-                        key={post.id}
-                        post={post}
-                        userLoggedIn={this.props.userData.id}
-                    />
-                )}
+            <div>
+                {this.condition()}
             </div>
         );
     }

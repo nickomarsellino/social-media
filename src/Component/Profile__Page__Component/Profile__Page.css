@@ -1,0 +1,16 @@
+#profile--page--container{
+    margin-top: 20px;
+}
+
+#album__cart__container{
+    width: 100%;
+}
+
+#profile--page--image{
+    width: 19%;
+    margin-right: 20px;
+}
+
+#profile--page--name{
+    font-size: 20px;
+}

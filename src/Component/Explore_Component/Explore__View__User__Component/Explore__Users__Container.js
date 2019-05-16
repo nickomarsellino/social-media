@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FadeIn from 'react-fade-in';
 
 import '../Explore.Component.css';
 
@@ -32,15 +33,17 @@ class Navigation__bar extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.usersData.map(users =>
-                    <ViewUser
-                        users={users}
-                        history={this.props.history}
-                        userLoggedIn={this.props.userLoggedIn}
-                    />
-                )}
-            </div>
+            <FadeIn>
+                <div>
+                    {this.state.usersData.map(users =>
+                        <ViewUser
+                            users={users}
+                            history={this.props.history}
+                            userLoggedIn={this.props.userLoggedIn}
+                        />
+                    )}
+                </div>
+            </FadeIn>
         );
     }
 }

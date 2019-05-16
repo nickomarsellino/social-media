@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import { Image } from 'semantic-ui-react';
+import {Link, withRouter} from 'react-router-dom';
+import {Image} from 'semantic-ui-react';
 import {
     Navbar,
     NavbarBrand,
@@ -11,7 +11,7 @@ import profile from '../../daniel.jpg';
 import logo from '../../logo.png';
 import './Navigation__bar.css'
 
-class Navigation__bar extends Component{
+class Navigation__bar extends Component {
 
     constructor(props) {
         super(props);
@@ -28,26 +28,33 @@ class Navigation__bar extends Component{
         });
     }
 
+
     render() {
         return (
             <Navbar light={true} color="white" expand="md" dark={true} scrolling={true} id="navigation__container">
                 <NavbarBrand id="logoText">
-                    <img src={logo} alt="" height="33px"/>
+                    <Link to={'/'}>
+                        <img src={logo} alt="" height="33px"/>
+                    </Link>
                 </NavbarBrand>
-                <p id="navigation__title">Social Media</p>
+                <Link to={'/'}>
+                    <p id="navigation__title">Social Media</p>
+                </Link>
                 <NavbarNav right={true}>
-                        <NavItem id="profileContainer">
-                            <Link to={'/Profile/' + this.state.username}>
-                                <Image className="navigation__profile" id="navigation--picture" src={profile} avatar={true}>
-                                    <img alt=" " src={profile}/>
-                                </Image>
-                                <span className="navigation__profile" id="navigation--name">{this.state.username}</span>
-                            </Link>
-                        </NavItem>
-                    </NavbarNav>
+                    <NavItem id="profileContainer">
+                        <Link
+                            to={`/Profile/${this.state.username}`}
+                        >
+                            <Image className="navigation__profile" id="navigation--picture" src={profile} avatar={true}>
+                                <img alt=" " src={profile}/>
+                            </Image>
+                            <span className="navigation__profile" id="navigation--name">{this.state.username}</span>
+                        </Link>
+                    </NavItem>
+                </NavbarNav>
             </Navbar>
         );
     }
 }
 
-export default Navigation__bar;
+export default withRouter(Navigation__bar);
