@@ -37,6 +37,7 @@ class Navigation__bar extends Component {
                 <div>
                     {this.state.usersData.map(users =>
                         <ViewUser
+                            key={users.id}
                             users={users}
                             history={this.props.history}
                             userLoggedIn={this.props.userLoggedIn}

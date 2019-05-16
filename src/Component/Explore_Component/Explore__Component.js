@@ -44,7 +44,7 @@ class Explore__Component extends Component{
             <FadeIn>
                 <div>
                     <div id="explore__container" className="ui three item menu">
-                        <a className="item itemNav"
+                        <div className="item itemNav"
                            data-trigger="0"
                            onClick={this.handleChange}
                         >
@@ -53,8 +53,8 @@ class Explore__Component extends Component{
                                 <Icon corner name='add' />
                             </Icon.Group>
                             <p>&nbsp;Connect to another users</p>
-                        </a>
-                        <a className="item itemNav"
+                        </div>
+                        <div className="item itemNav"
                            data-trigger="1"
                            onClick={this.handleChange}
                         >
@@ -63,7 +63,7 @@ class Explore__Component extends Component{
                                 <Icon corner name='thumbs up outline' />
                             </Icon.Group>
                             <p>&nbsp;Best New Album</p>
-                        </a>
+                        </div>
                     </div>
                     {this.renderMyComponent()}
                 </div>

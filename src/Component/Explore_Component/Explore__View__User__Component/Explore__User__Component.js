@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Card, Icon, Image} from 'semantic-ui-react';
 import profile from '../../../daniel.jpg';
+import {Link} from 'react-router-dom';
 import '../Explore.Component.css';
 
 class Navigation__bar extends Component{
@@ -26,6 +27,9 @@ class Navigation__bar extends Component{
         if (this.props.userLoggedIn !== userId) {
             return (
                 <center>
+                    <Link
+                        to={`/Profile/${this.state.username}`}
+                    >
                     <div
                         id='icon--view--profile'>
                         <center>
@@ -36,6 +40,7 @@ class Navigation__bar extends Component{
                             {' '} View Profile
                         </center>
                     </div>
+                    </Link>
                 </center>
             );
         }
@@ -60,16 +65,12 @@ class Navigation__bar extends Component{
                         <Card.Meta>
                             <span className='date'>{this.state.username}</span>
                         </Card.Meta>
-                        <a>
+                        <div>
                             <Icon name='map' />
                             {this.state.city}
-                        </a>
-                        <div
-                            id="a"
-                            // onClick={() => this.viewUserProfile(username , userId)}
-                        >
-                            {this.viewButtton(this.state.userId)}
                         </div>
+
+                            {this.viewButtton(this.state.userId,this.state.username)}
                     </Card.Content>
                 </Card>
             </div>

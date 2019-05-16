@@ -75,7 +75,7 @@ class Post__Inbox extends Component {
                             <Image src={profile} avatar id="avatarBox"/>
                             <span><h5 id="nameBox">{this.state.username}</h5></span>
                             <Link to={'/Explore'}>
-                                <Button color="default"
+                                <Button
                                         size="md"
                                         color="info"
                                         id="explore__button"

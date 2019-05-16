@@ -49,7 +49,7 @@ class View__Comment__Component extends Component{
                         <Comment.Text id="commentText">{this.state.comment.body}</Comment.Text>
                     </Comment.Content>
 
-                    //users hanya bisa mengapus comment Id yang sama dengan userLoggedIn saat ini.
+                    {/*users hanya bisa mengapus comment Id yang sama dengan userLoggedIn saat ini.*/}
                     {this.showButtonDeleteComment(this.state.comment.id, this.state.comment.postId)}
                     <hr/>
                 </Comment>

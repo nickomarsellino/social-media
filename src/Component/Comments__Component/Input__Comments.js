@@ -71,7 +71,7 @@ class Input__Comments extends Component {
                                 <img src={profile} alt={""}/>
                             </Feed.Label>
                             <Feed.Content>
-                                <a>{this.state.username}</a>
+                                <p>{this.state.username}</p>
                             </Feed.Content>
                         </Feed.Event>
                     </Feed>
